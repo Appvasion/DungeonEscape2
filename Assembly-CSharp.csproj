@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/frankmacbook/Documents/UnityProjects/Dungeon Escape 2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     
     private Rigidbody2D _rigid;
+    private PlayerAnimation _animation;
+    private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     private float _jumpForce = 5.0f;
@@ -12,9 +14,14 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private LayerMask _groundLayer;
 
+    [SerializeField]
+    private float _speed = 2.5f;
+
 	// Use this for initialization
 	void Start () {
         _rigid = GetComponent<Rigidbody2D>();
+        _animation = GetComponent<PlayerAnimation>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +33,18 @@ public class Player : MonoBehaviour {
 
     void Move() {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        _rigid.velocity = new Vector2(horizontalInput, _rigid.velocity.y);
+
+        if (horizontalInput > 0)
+        {
+            _spriteRenderer.flipX = false;
+        }
+        else if (horizontalInput < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+
+        _rigid.velocity = new Vector2(horizontalInput * _speed, _rigid.velocity.y);
+        _animation.Move(horizontalInput);
     }
 
     void Jump() {
