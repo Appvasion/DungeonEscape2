@@ -22,4 +22,9 @@ public class PlayerAnimation : MonoBehaviour {
         _animator.SetFloat("Move", Mathf.Abs(move));
          
     }
+
+    public void Jump(bool jump)
+    {
+        _animator.SetBool("Jump", jump);
+    }
 }
